@@ -2,22 +2,22 @@
 //
 
 #include "Week 1.h"
-#pragma message("Hello world")
 
-using namespace std;
+#define usingNamespaces 0
 
-#define name "Eric"
-#define age 40
-
+#if usingNamespaces == 1
 int main()
 {
-#if age<40
-	cout << "You are under 40" << endl;
-#elif age < 60
-	cout << "You are under 60" << endl;
-#else
-	cout << "You are over 60" << endl;
-#endif
-
+	#pragma message("Not using namespaces");
+	std::cout << "Hello world!" << std::endl;
 	return 0;
 }
+#else
+using namespace std;
+int main()
+{
+	#pragma message("Using namespaces")
+	cout << "Hello world!" << endl;
+	return 0;
+}
+#endif
