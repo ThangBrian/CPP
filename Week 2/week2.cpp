@@ -26,10 +26,10 @@ namespace CST8219 {
 	};
 }
 
-using namespace CST8219;
 int main(int argc, char** argv)
 {
-	Vehicle myVehicle;
+	using namespace CST8219;
+	Vehicle myVehicle(4);
 	cout << "I made a vehicle!" << endl;
 	return 0;
 }
