@@ -1,5 +1,6 @@
 
 #include<iostream>
+#include<string>
 
 
 using namespace std;
@@ -15,7 +16,7 @@ namespace CST8219 {
 			cout << "In constructor with 2 parameters" << endl;
 		}
 		Vehicle(int w) : Vehicle(w, 4) {
-			cout << "In constructor with 1 parameters, wheels = " << w  << endl;
+			cout << "In constructor with 1 parameters " << endl;
 		}
 		Vehicle() : Vehicle(4) {
 			cout << "In constructor with 0 parameters" << endl;
@@ -26,10 +27,60 @@ namespace CST8219 {
 	};
 }
 
+void clearCin() {
+	cin.clear();
+	cin.ignore(256, '\n');
+}
+
 int main(int argc, char** argv)
 {
 	using namespace CST8219;
-	Vehicle myVehicle(4, 2);
-	cout << "I made a vehicle!" << endl;
+	Vehicle* pVehicle = NULL;
+	bool loopAgain = true;
+	do{
+		string option;
+		cout << "Please choose an option.\n[1] Create a new vehicle\n[q] Quit" << endl;
+		getline(cin, option);
+		if (option.compare("q") != 0 && option.compare("Q") != 0) {
+			if (pVehicle)
+				delete pVehicle;
+			int d, w;
+			cout << "enter number of doors" << endl;
+			while (true) {
+				while (!(cin >> d)) {
+					cout << "Error! Please enter an integer for the number of doors" << endl;
+					clearCin();
+				}
+				if (d > 0)
+					break;
+				else
+					cout << "Error! Please enter a positive integer for the number of doors" << endl;
+			}
+
+			cout << "enter number of wheels" << endl;
+			while (true) {
+				while (!(cin >> w)) {
+					cout << "Error! Please enter an integer for the number of wheels" << endl;
+					clearCin();
+				}
+				if (w > 0)
+					break;
+				else
+					cout << "Error! Please enter a positive integer for the number of wheels" << endl;
+			}
+			pVehicle = new Vehicle(w, d);
+		clearCin();
+		}
+		else {
+			loopAgain = false;
+		}
+	} while (loopAgain == true);
+	Vehicle veh1;
+	cout << "Vehicles takes " << sizeof(veh1) << endl;
+	Vehicle veh2(4);
+	cout << "Vehicles takes " << sizeof(veh2) << endl;
+	Vehicle veh3(4,2);
+	cout << "Vehicles takes " << sizeof(veh3) << endl;
+	delete pVehicle;
 	return 0;
 }
