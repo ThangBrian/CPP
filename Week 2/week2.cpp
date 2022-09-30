@@ -36,7 +36,6 @@ int main(int argc, char** argv)
 {
 	using namespace CST8219;
 	Vehicle* pVehicle = NULL;
-	bool loopAgain = true;
 	do{
 		string option;
 		cout << "Please choose an option.\n[1] Create a new vehicle\n[q] Quit" << endl;
@@ -72,9 +71,9 @@ int main(int argc, char** argv)
 		clearCin();
 		}
 		else {
-			loopAgain = false;
+			break;
 		}
-	} while (loopAgain == true);
+	} while (true);
 	Vehicle veh1;
 	cout << "Vehicles takes " << sizeof(veh1) << endl;
 	Vehicle veh2(4);
